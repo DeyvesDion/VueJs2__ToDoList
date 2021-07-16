@@ -8,7 +8,7 @@
         >
             <div class="todo__list">
                 <div class="todo__title">
-                    <h2>{{ task.name }}</h2>
+                    <h2>{{ firstCharUpper(task.name) }}</h2>
                 </div>
                 <div class="edit__done__trash">
                     <div class="todo__edit">
@@ -33,6 +33,11 @@
 export default {
     name: "TodoList",
     components: {},
+    methods: {
+        firstCharUpper(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        },
+    },
     computed: {
         getTasks() {
             return this.$store.state.tasks;

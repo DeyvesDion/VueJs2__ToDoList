@@ -14,6 +14,9 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    ADD_TODO: (state, tasks) => {
+      state.tasks.push(tasks)
+    }
   },
   actions: {
   },

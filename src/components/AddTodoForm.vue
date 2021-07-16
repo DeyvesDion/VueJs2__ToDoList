@@ -1,14 +1,15 @@
 <template>
     <div class="todo__form">
-        <form @click="">
+        <form @submit.prevent="SendToDo()">
             <div todo__item>
                 <!-- <label for="todo__item">Ajouter une activité</label> -->
                 <input
+                    v-model="AddToDo"
+                    v-bind:placeholder="placeholder"
                     class="input__todo"
                     type="text"
                     name="todo__item"
                     autofocus
-                    placeholder="Ajouter une activité"
                 />
                 <button class="btn add__todo" type="">Ajouter</button>
             </div>
@@ -19,6 +20,28 @@
 <script>
 export default {
     name: "AddTodoForm",
+    data() {
+        return {
+            AddToDo: "",
+        };
+    },
+    components: {},
+    methods: {
+        SendToDo() {
+            if (this.AddToDo.length > 0) {
+                console.log(this.AddToDo);
+                this.$store.state.tasks.push({ name: this.AddToDo });
+                this.AddToDo = "";
+            } else {
+                alert("Ajouter une activité");
+            }
+        },
+    },
+    computed: {
+        placeholder() {
+            return "Ajouter une activité";
+        },
+    },
 };
 </script>
 
