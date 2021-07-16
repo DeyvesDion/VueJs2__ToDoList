@@ -24,7 +24,7 @@ export default {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 50% 50%;
-    align-items: center;
+    align-items: top;
     padding-top: 50px;
     margin: 0 auto;
     justify-content: center;
