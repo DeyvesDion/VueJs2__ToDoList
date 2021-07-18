@@ -10,13 +10,16 @@ export default new Vuex.Store({
       { name: "lire la bible" },
       { name: "prier" },
       { name: "prendre ma douche" }
+    ],
+    completed: [
+      // { name: "essai" },
     ]
 
   },
   mutations: {
-    ADD_TODO: (state, tasks) => {
-      state.tasks.push(tasks)
-    }
+    // ADD_TODO: (state, tasks) => {
+    //   state.tasks.push(tasks)
+    // }
   },
   actions: {
   },

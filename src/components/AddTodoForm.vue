@@ -11,7 +11,14 @@
                     name="todo__item"
                     autofocus
                 />
-                <button class="btn add__todo" type="">Ajouter</button>
+                <button
+                    :class="[AddToDo ? 'btn' : 'inactive']"
+                    class="btn add__todo"
+                    type=""
+                    title="Définir une activité avant d'ajouter"
+                >
+                    Ajouter
+                </button>
             </div>
         </form>
     </div>
@@ -32,8 +39,37 @@ export default {
                 console.log(this.AddToDo);
                 this.$store.state.tasks.push({ name: this.AddToDo });
                 this.AddToDo = "";
+
+                // Toast Notification
+                this.$toast.success("Nouvelle activité ajouté", {
+                    position: "top-right",
+                    timeout: 5000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: false,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false,
+                });
             } else {
-                alert("Ajouter une activité");
+                this.$toast.info("Ajouter une activité", {
+                    position: "top-right",
+                    timeout: 5000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: false,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false,
+                });
             }
         },
     },
@@ -83,6 +119,9 @@ export default {
     cursor: pointer;
     font-size: 20px;
     background-color: transparent;
+}
+.inactive {
+    cursor: not-allowed;
 }
 .btn:hover {
     background-color: #7552eb;
