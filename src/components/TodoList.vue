@@ -130,6 +130,7 @@ export default {
 }
 .todo__title {
     font-size: 10px;
+    text-align: left;
 }
 .edit__done__trash {
     display: flex;
@@ -191,6 +192,11 @@ i {
 }
 
 @media screen and (max-width: 700px) {
+    .todo__title {
+        margin-right: 20px;
+        width: 200px;
+        text-align: left;
+    }
     .todo__list {
         margin: 10px 0;
     }
