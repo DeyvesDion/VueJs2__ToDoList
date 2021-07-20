@@ -27,10 +27,18 @@
                     <div @click="EditeToDo(index)" class="todo__edit">
                         <i class="far fa-edit" title="Editer"></i>
                     </div>
-                    <div @click="AddClassDone(task)" class="todo__done">
+                    <div
+                        :class="{ desactiv: task.inProgress === false }"
+                        @click="AddClassDone(task)"
+                        class="todo__done"
+                    >
                         <i class="far fa-check-circle" title="Valider"></i>
                     </div>
-                    <div @click="ChangeStatus(task)" class="todo__progress">
+                    <div
+                        :class="{ desactiv: task.done === true }"
+                        @click="ChangeStatus(task)"
+                        class="todo__progress"
+                    >
                         <i class="fas fa-spinner" title="En cours"></i>
                     </div>
                     <div @click="Delate(index)" class="todo__trash">
@@ -70,6 +78,7 @@ export default {
         },
         AddClassDone(task) {
             task.done = !task.done;
+            // task.status = true;
         },
         ChangeStatus(task) {
             task.status = !task.status;
@@ -176,6 +185,9 @@ i {
 .inProgress {
     color: orangered;
     display: none;
+}
+.desactiv {
+    pointer-events: none;
 }
 
 @media screen and (max-width: 700px) {

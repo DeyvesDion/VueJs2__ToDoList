@@ -40,6 +40,8 @@ export default {
                 this.$store.state.tasks.push({
                     name: this.AddToDo,
                     done: false,
+                    status: null,
+                    inProgress: true,
                 });
                 this.AddToDo = "";
 
