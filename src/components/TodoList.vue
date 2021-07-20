@@ -8,28 +8,29 @@
         >
             <div class="todo__list">
                 <div class="todo__title">
-                    <h2 :class="{ done: isValid }">
+                    <h2
+                        :class="[
+                            { done: task.done },
+                            { progress: task.status },
+                        ]"
+                    >
                         {{ firstCharUpper(task.name) }}
+                        <span :class="{ inProgress: task.inProgress }"
+                            ><i
+                                class="fas fa-hourglass-half"
+                                title="En cours"
+                            ></i
+                        ></span>
                     </h2>
-                    <!-- <h2 :class="[getCompletet ? 'itemText' : '', 'done']">
-                        {{ firstCharUpper(task.name) }}
-                    </h2> -->
                 </div>
                 <div class="edit__done__trash">
                     <div @click="EditeToDo(index)" class="todo__edit">
                         <i class="far fa-edit" title="Editer"></i>
                     </div>
-                    <div class="todo__done" @click="AddClassDone(index)">
+                    <div @click="AddClassDone(task)" class="todo__done">
                         <i class="far fa-check-circle" title="Valider"></i>
                     </div>
-                    <!-- <div class="todo__done">
-                        <input
-                            class="check__item"
-                            type="checkbox"
-                            @change="AddClassDone(task.name)"
-                        />
-                    </div> -->
-                    <div class="todo__progress">
+                    <div @click="ChangeStatus(task)" class="todo__progress">
                         <i class="fas fa-spinner" title="En cours"></i>
                     </div>
                     <div @click="Delate(index)" class="todo__trash">
@@ -46,9 +47,9 @@ export default {
     name: "TodoList",
     data() {
         return {
-            isValid: false,
+            // inProgress: false,
             getCompletet: [],
-            // ItemCompleted: null,
+            currentItem: null,
         };
     },
     components: {},
@@ -67,13 +68,12 @@ export default {
         EditeToDo(index) {
             alert("Modification");
         },
-        AddClassDone(t) {
-            this.$store.state.tasks.name = t;
-            // index == current;
-            // console.log(t);
-            this.$store.state.completed.push({ name: t });
-            this.isValid = !this.isValid;
-            console.log(this.$store.state.completed);
+        AddClassDone(task) {
+            task.done = !task.done;
+        },
+        ChangeStatus(task) {
+            task.status = !task.status;
+            task.inProgress = !task.inProgress;
         },
         Delate(index) {
             this.$store.state.tasks.splice(index, 1);
@@ -162,7 +162,7 @@ i {
     transform: scale(1.8);
 } */
 .fa-spinner:hover {
-    color: orange;
+    color: orangered;
     font-size: 25px;
 }
 .done {
@@ -170,8 +170,12 @@ i {
     color: green;
     font-style: italic;
 }
-.itemText {
-    color: rebeccapurple;
+.progress {
+    color: orangered;
+}
+.inProgress {
+    color: orangered;
+    display: none;
 }
 
 @media screen and (max-width: 700px) {

@@ -6,10 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tasks: [
-      { name: "se reveiller à 5h du matin" },
-      { name: "lire la bible" },
-      { name: "prier" },
-      { name: "prendre ma douche" }
+      { name: "se reveiller à 5h du matin", done: null, status: null, inProgress: true },
+      { name: "lire la bible", done: false, status: null, inProgress: true },
+      { name: "prier", done: false, status: null, inProgress: true },
+      { name: "prendre ma douche", done: false, status: null, inProgress: true }
     ],
     completed: [
       // { name: "essai" },

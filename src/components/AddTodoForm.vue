@@ -37,7 +37,10 @@ export default {
         SendToDo() {
             if (this.AddToDo.length > 0) {
                 console.log(this.AddToDo);
-                this.$store.state.tasks.push({ name: this.AddToDo });
+                this.$store.state.tasks.push({
+                    name: this.AddToDo,
+                    done: false,
+                });
                 this.AddToDo = "";
 
                 // Toast Notification
